@@ -1,0 +1,6 @@
+[project]
+name = "shared_memory"
+version = "0.1"
+authors = [
+    {name = "Aina Rasoldier"}
+]
