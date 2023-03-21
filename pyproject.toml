@@ -4,3 +4,6 @@ version = "0.1"
 authors = [
     {name = "Aina Rasoldier"}
 ]
+dependencies = [
+    "geopandas"
+]
