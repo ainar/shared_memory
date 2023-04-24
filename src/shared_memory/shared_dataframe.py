@@ -66,9 +66,15 @@ class SharedDataFrame:
 
     def __getitem__(self, columns):
         if np.isscalar(columns):
-            indexer = int(np.where(self._columns == columns)[0])
+            result = np.where(self._columns == columns)[0]
+            if result.shape[0] == 0:
+                available_cols = ", ".join(self._columns)
+                raise IndexError(f"Column '{columns}' not found. Available columns: {available_cols}")
+            indexer = int(result)
             return pd.Series(
-                self._values.array[:, indexer], name=columns, index=self._index
+                self._values.array[:, indexer],
+                name=columns,
+                index=self._index,
             )
         else:
             indexer = np.where(self._columns.isin([columns]))[0]

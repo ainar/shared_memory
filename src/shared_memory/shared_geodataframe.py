@@ -109,7 +109,7 @@ class SharedGeoDataFrame:
     def __getitem__(self, columns):
         if np.isscalar(columns):
             result = np.where(self._columns == columns)[0]
-            if not result:
+            if result.shape[0] == 0:
                 available_cols = ", ".join(self._columns)
                 raise IndexError(f"Column '{columns}' not found. Available columns: {available_cols}")
             indexer = int(result)
